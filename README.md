@@ -14,11 +14,11 @@
   * [Licence and Legal Information](#licence-and-legal-information)
 
 ## Description
-This repository contains the source files to build the Databus Ping Pong example application in C#. Please refer to the [main repository](https://github.com/industrial-edge/databus-ping-pong) for more information about this application example.
+This repository contains the source files to build the Databus Ping Pong application example implemented C#. Please refer to the [main repository](https://github.com/industrial-edge/databus-ping-pong) for more information about this application example.
 
 ### Overview
 
-This implementation of the Databus Ping Pong uses a multi-stage process for building the docker image to keep the image size as small as possible. The two ``FROM`` Statements in the [Dockerfile](src/Dockerfile) separate the build process into two stages. 
+This implementation of the Databus Ping Pong application example uses a multi-stage process for building the docker image to keep the image size as small as possible. The two ``FROM`` Statements in the [Dockerfile](src/Dockerfile) separate the build process into two stages. 
 The fist one is compiling the source code to a executable which then gets copied to the second stage which will be the final image for the application. Please refer to the the [docker documentation](https://docs.docker.com/develop/develop-images/multistage-build/) for more information regarding multi-stage builds.
 
 
