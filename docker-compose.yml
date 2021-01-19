@@ -1,0 +1,24 @@
+version: '2.4'
+
+services:
+  pingpong_csharp:
+    build:
+      context: ./src
+    image: pingpong_csharp:1.0.0
+    networks:
+      - proxy-redirect
+    environment:
+      - TOPIC_1=topic1
+      - TOPIC_2=topic2
+      - MQTT_IP=ie_databus
+      - MQTT_USER=edge
+      - MQTT_PASSWORD=edge
+    mem_limit: 100mb
+    volumes:
+      - './publish/:/publish/'
+      - './cfg-data/:/cfg-data/'
+ 
+networks:
+  proxy-redirect:
+      external:
+          name: proxy-redirect
