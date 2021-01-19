@@ -26,6 +26,7 @@ The fist one is compiling the source code to a executable which then gets copied
 ## Installation
 
 Please refer to the [Installation](https://github.com/industrial-edge/databus-ping-pong/blob/main/docs/Installation.md) section of the main repository on how to build and deploy the application to a Industrial Edge Device.
+When creating a configuration for the application in the Industrial Edge Management, you can use the the [mqtt-config.json](cfg-data/mqtt-config.json) file in this repository.
 
 ## Usage
 
