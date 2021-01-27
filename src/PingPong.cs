@@ -27,6 +27,9 @@ namespace PingPong
         [JsonProperty(PropertyName = "MQTT_PASSWORD")]
         public string Password { get; set; }
 
+        [JsonProperty(PropertyName = "MQTT_IP")]
+        public string BrokerIP { get; set; }
+        
         [JsonProperty(PropertyName = "TOPIC_1")]
         public string Topic1 { get; set; }
 
@@ -70,6 +73,7 @@ namespace PingPong
 
                     Console.WriteLine("user= " + parameters.User);
                     Console.WriteLine("password= " + parameters.Password);
+                    Console.WriteLine("broker ip= " + parameters.BrokerIP);
                     Console.WriteLine("topic1= " + parameters.Topic1);
                     Console.WriteLine("topic2= " + parameters.Topic2);
                 }
@@ -94,6 +98,7 @@ namespace PingPong
                 {
                     mqtt_user = configParams.User;
                     mqtt_pw = configParams.Password;
+                    mqtt_broker = configParams.BrokerIP;
                     mqtt_topic1 = configParams.Topic1;
                     mqtt_topic2 = configParams.Topic2;
                 }
@@ -122,7 +127,7 @@ namespace PingPong
             // create mqtt client instance (host name OR IP address work)
             client = new MqttClient(mqtt_broker);
             
-			Console.WriteLine("Creat client instance...done");
+			Console.WriteLine("Creating client instance...done");
 			
             // register to message received
             client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
