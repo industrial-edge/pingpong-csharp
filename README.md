@@ -63,7 +63,7 @@ Please refer to the [Installation](docs/Installation.md) documentation.
 
 Once the applciation is successfully deployed, it can be tested using the IE Flow Creator.
 
-Please refer to [Testing the application using Simatic Flow Creator](docs/Installation.md#4-testing-the-application-using-simatic-flow-creator)
+Please refer to [Testing the application using Simatic Flow Creator](docs/Installation.md#testing-the-application-using-simatic-flow-creator)
 how to use it.
 
 ## Documentation
