@@ -1,4 +1,4 @@
-// Copyright 2020 Siemens AG 
+// Copyright 2021 Siemens AG 
 // This file is subject to the terms and conditions of the MIT License.   
 // See LICENSE file in the top-level directory.
 
@@ -43,45 +43,36 @@ namespace PingPong
         public static string clientId;
         public static bool quit = false;
 
-        // By default get params from environment variables in docker-compose.yml
-        public static string mqtt_broker = Environment.GetEnvironmentVariable ("MQTT_IP");
-        public static string mqtt_user = Environment.GetEnvironmentVariable ("MQTT_USER");
-        public static string mqtt_pw = Environment.GetEnvironmentVariable ("MQTT_PASSWORD");
-		public static string mqtt_topic1 = Environment.GetEnvironmentVariable ("TOPIC_1");
-        public static string mqtt_topic2 = Environment.GetEnvironmentVariable ("TOPIC_2");
+        public static string mqtt_broker;
+        public static string mqtt_user;
+        public static string mqtt_pw;
+		public static string mqtt_topic1;
+        public static string mqtt_topic2;
 
         public static string config_file = "/cfg-data/mqtt-config.json";
 
    
-        public static JsonParams ReadJsonParams(string path = null)
+        public static JsonParams ReadJsonParams(string path)
         {
             JsonParams parameters = new JsonParams();
 
-            if(!File.Exists(path))
-            {
-                Console.WriteLine("No config file available!");
-                parameters = null;
-            }
-            else
-            {
-                try
-                {
-                    Console.WriteLine("Start reading config params from " + path + ":");
-                    string text = File.ReadAllText(path);
-                    //Console.WriteLine(text);
-                    parameters = JsonConvert.DeserializeObject<JsonParams>(text);
+		try
+            {	Console.WriteLine("Start reading config params from " + path + ":");
+                string text = File.ReadAllText(path);
+                //Console.WriteLine(text);
+                parameters = JsonConvert.DeserializeObject<JsonParams>(text);
 
-                    Console.WriteLine("user= " + parameters.User);
-                    Console.WriteLine("password= " + parameters.Password);
-                    Console.WriteLine("broker ip= " + parameters.BrokerIP);
-                    Console.WriteLine("topic1= " + parameters.Topic1);
-                    Console.WriteLine("topic2= " + parameters.Topic2);
-                }
-                catch(Exception ex)
-                {
-                    Console.WriteLine("Error while reading config file: " + ex);
-                }
-            }    
+                Console.WriteLine("user= " + parameters.User);
+                Console.WriteLine("password= " + parameters.Password);
+                Console.WriteLine("broker ip= " + parameters.BrokerIP);
+                Console.WriteLine("topic1= " + parameters.Topic1);
+                Console.WriteLine("topic2= " + parameters.Topic2);
+            }
+            catch(Exception ex)
+            {
+		Console.WriteLine("Error while reading config file: " + ex);
+            }
+				             
             return parameters;
         }
 
@@ -91,18 +82,66 @@ namespace PingPong
             {
                 Console.WriteLine("Starting pingpong app...");
 
-                // If a config file exists, get params from here
-                JsonParams configParams = ReadJsonParams(config_file);
+                // If a config file exists, get params from here (mqtt-config.json)
+		if(File.Exists(config_file))
+		{
+                	Console.WriteLine("Reading parameters from configuration file");
+			JsonParams configParams = ReadJsonParams(config_file);
+				
+		if(configParams != null)
+		{
+                        mqtt_broker = configParams.BrokerIP;
+                        mqtt_user = configParams.User;
+						mqtt_pw = configParams.Password;
+						mqtt_topic1 = configParams.Topic1;
+						mqtt_topic2 = configParams.Topic2;
+					}
+				}
+                // Get params from environment variables in docker-compose.yml
+				else
+				{
+					Console.WriteLine("Reading parameters from environment variables");
 
-                if(configParams != null)
+                    mqtt_broker = Environment.GetEnvironmentVariable("MQTT_IP");
+                    mqtt_user = Environment.GetEnvironmentVariable("MQTT_USER");
+                    mqtt_pw = Environment.GetEnvironmentVariable("MQTT_PASSWORD");
+                    mqtt_topic1 = Environment.GetEnvironmentVariable("TOPIC_1");
+                    mqtt_topic2 = Environment.GetEnvironmentVariable("TOPIC_2");
+				}
+
+                Console.WriteLine("MQTT_IP =" + mqtt_broker);
+                Console.WriteLine("MQTT_USER =" + mqtt_user);
+                Console.WriteLine("MQTT_PASSWORD =" + mqtt_pw);
+                Console.WriteLine("TOPIC_1 =" + mqtt_topic1);
+                Console.WriteLine("TOPIC_2 =" + mqtt_topic2);
+
+                if(mqtt_broker == null)
                 {
-                    mqtt_user = configParams.User;
-                    mqtt_pw = configParams.Password;
-                    mqtt_broker = configParams.BrokerIP;
-                    mqtt_topic1 = configParams.Topic1;
-                    mqtt_topic2 = configParams.Topic2;
+                    Console.WriteLine("Parameter mqtt_broker not available!");
+                    return;
                 }
 
+                if(mqtt_user == null)
+                {
+                    Console.WriteLine("Parameter mqtt_user not available!");
+                    return;
+                }
+                if(mqtt_pw == null)
+                {
+                    Console.WriteLine("Parameter mqtt_pw not available!");
+                    return;
+                }
+                if(mqtt_topic1 == null)
+                {
+                    Console.WriteLine("Parameter mqtt_topic1 not available!");
+                    return;
+                }
+                if(mqtt_topic2 == null)
+                {
+                    Console.WriteLine("Parameter mqtt_topic2 not available!");
+                    return;
+                }
+                 				
                 Connect();
                 Subscribe();
 
@@ -122,8 +161,8 @@ namespace PingPong
 
         static void Connect()
         {
-			Console.WriteLine("Create client instance...");
-			
+		Console.WriteLine("Create client instance...");
+
             // create mqtt client instance (host name OR IP address work)
             client = new MqttClient(mqtt_broker);
             
