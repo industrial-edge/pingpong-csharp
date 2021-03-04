@@ -1,4 +1,4 @@
-# Databus Ping Pong C#
+# Databus Ping Pong C\#
 
 This repository contains the source files to build the Databus Ping Pong application example implemented in C#.
 
