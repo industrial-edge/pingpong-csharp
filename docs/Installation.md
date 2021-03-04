@@ -57,7 +57,7 @@ The configuration file has to be named `mqtt-config.json` and has to be structur
 {
     "MQTT_USER":"edge",
     "MQTT_PASSWORD":"edge",
-	"MQTT_IP":"ie-databus",
+    "MQTT_IP":"ie-databus",
     "TOPIC_1":"topic1",
     "TOPIC_2":"topic1"
 }
