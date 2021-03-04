@@ -114,6 +114,5 @@ When the pingpong application is deployed and running on the Industrial Edge Dev
 - Set the topics of the mqtt-nodes according to the configuration of the application. For example `topic1` as the topic to publish to and `topic2` as the topic to subscribe to.
 - Deploy the flow and test by injecting a string payload into the mqtt in node. If the string is "Ping", the app will answer with "Pong". If the string is "Pong" the app will answer with "Ping".
 
-The finished flow is available [here](./src/Flow_Pingpong_Test.json) and can be imported into the simatic flow creator.
-
+The finished flow is available in the [src](./src) directory and can be imported into the simatic flow creator.
 ![PingPong test in Simatic Flow Creator](./graphics/pingpong-flowcreator.gif)
