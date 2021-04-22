@@ -39,12 +39,12 @@ The two topics and the databus user have to be created in the IE Databus in adva
 
 ### Used components
 
-- Industrial Edge Management V 1.1.16
-  - IE Databus V1.1.23
-  - IE Databus Configurator V1.1.24
-  - IE Flow Creator V 1.0.5
-- Industrial Edge Device V 1.1.0-59
-- Industrial Edge App Publisher V1.1.4
+- Industrial Edge Management V1.2.0-36 / V1.2.14
+  - IE Databus V1.2.16
+  - IE Databus Configurator V1.2.23
+  - IE Flow Creator V 1.1.2
+- Industrial Edge Device V1.2.0-56
+- Industrial Edge App Publisher V1.2.27
 - Docker Engine V20.10.3
 - Docker Compose V1.28.5
 
