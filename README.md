@@ -25,6 +25,10 @@ The IE Flow Creator is used to exchange data with another app using the IE Datab
 The application example uses a multi-stage process for building the docker image to keep the image size as small as possible. The two ``FROM`` Statements in the [Dockerfile](src/Dockerfile) separate the build process into two stages. 
 The fist one is compiling the source code to a executable which then gets copied to the second stage which will be the final image for the application. Please refer to the the [docker documentation](https://docs.docker.com/develop/develop-images/multistage-build/) for more information regarding multi-stage builds.
 
+This example shows two ways of configuring the application:
+- configuration via file upload (fix config file)
+- configuration via app Configuration Service (custom config UI with Json-Forms)
+
 ![Use Case](docs/graphics/DataFlow.png)
 
 ### General task
@@ -42,7 +46,8 @@ The two topics and the databus user have to be created in the IE Databus in adva
 - Industrial Edge Management V1.2.0-36 / V1.2.14
   - IE Databus V1.2.16
   - IE Databus Configurator V1.2.23
-  - IE Flow Creator V 1.1.2
+  - IE Flow Creator V1.1.2
+  - IE App Configuration Service V1.0.5
 - Industrial Edge Device V1.2.0-56
 - Industrial Edge App Publisher V1.2.7
 - Docker Engine V20.10.3
