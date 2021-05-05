@@ -12,7 +12,7 @@
   - [Configuring and deploying the application to a Industrial Edge Device](#configuring-and-deploying-the-application-to-a-industrial-edge-device)
     - [Create a fixed configuration via file upload (UseCase 1)](#create-a-fixed-configuration-via-file-upload-usecase-1)
     - [Create a custom UI configuration (UseCase 2)](#create-a-custom-ui-configuration-usecase-2)
-    - [Installing the application to a Industrial Edge Device](#installing-the-application-to-a-industrial-edge-device)
+    - [Installing the application to an Industrial Edge Device](#installing-the-application-to-an-industrial-edge-device)
   - [Testing the application using Simatic Flow Creator](#testing-the-application-using-simatic-flow-creator)
 
 ## Build application
