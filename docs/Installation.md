@@ -149,10 +149,12 @@ When the PingPong application is deployed and running on the Industrial Edge Dev
 
 ## Testing the application using Simatic Flow Creator
 
-- Open the Web interface of the Simatic Flow Creator
+- Open the Industrial Edge Device web interface
+- Restart the PingPong application (to ensure the right configuration is used)
+- Open the Simatic Flow Creator
 - Connect a "inject" node with a "mqtt out" node
 - Connect a "mqtt in" node with a "debug" node
-- Configure the mqtt-nodes to connect to the databus. Enter the hostname, username and password
+- Configure the mqtt-nodes to connect to the databus. Enter the hostname, username and password.
 - Set the topics of the mqtt-nodes according to the configuration of the application. For example `topic1` as the topic to publish to and `topic2` as the topic to subscribe to.
 - Deploy the flow and test by injecting a string payload into the mqtt in node. If the string is "Ping", the application will answer with "Pong". If the string is "Pong" the application will answer with "Ping".
 
