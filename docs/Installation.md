@@ -4,10 +4,10 @@
   - [Build application](#build-application)
     - [Cloning the repository](#cloning-the-repository)
     - [Build docker image](#build-docker-image)
+  - [Configuring the Industrial Edge Databus](#configuring-the-industrial-edge-databus)
   - [Create configuration for the application](#create-configuration-for-the-application)
     - [Configuration via fixed config file (UseCase 1)](#configuration-via-fixed-config-file-usecase-1)
     - [Configuration via app Configuration Service (UseCase 2)](#configuration-via-app-configuration-service-usecase-2)
-  - [Configuring the Industrial Edge Databus](#configuring-the-industrial-edge-databus)
   - [Upload the application to the Industrial Edge Management](#upload-the-application-to-the-industrial-edge-management)
   - [Configuring and deploying the application to a Industrial Edge Device](#configuring-and-deploying-the-application-to-a-industrial-edge-device)
     - [Create a fixed configuration via file upload (UseCase 1)](#create-a-fixed-configuration-via-file-upload-usecase-1)
@@ -34,6 +34,19 @@
 You should see a similar result to this:
 
 ![Check for docker image](./graphics/docker-images-grep.png)
+
+## Configuring the Industrial Edge Databus
+
+For the PingPong application the databus must provide two topics to publish and subscribe to.
+
+- Open the Industrial Edge Management web interface
+- Go to "Data Connections" > IE Databus
+- Select the corresponding Industrial Edge Device
+- Create a new user with username and password and give the user publish and subscribe permission
+- Create two topics for the PingPong application
+- Deploy the databus configuration and wait for the job to be finished successfully
+
+![Databus](./graphics/Databus.png)
 
 ## Create configuration for the application
 
@@ -79,19 +92,6 @@ Then a JSON Forms file must be created, consisting of an UI schema and a data sc
 ![JsonSchema](./graphics/JsonSchema.png)
 
 This repository already provides that JSON Forms configuration file [here](./../cfg-data/mqtt-config_schema.json). Please rename this file into `mqtt-config.json` on your host to use it properly.
-
-## Configuring the Industrial Edge Databus
-
-To be able to authenticate with the databus to publish and subscribe to the configured topics, the Industrial Edge Databus has to be configured properly.
-
-- Open the Industrial Edge Management web interface
-- Go to "Data Connections" > IE Databus
-- Select the corresponding Industrial Edge Device
-- Create a new user with the username and password defined for the PingPong application and give the user publish and subscribe permission
-- Create the topics needed by the PingPong application
-- Deploy the databus configuration and wait for the job to be finished successfully
-
-![Databus](./graphics/Databus.png)
 
 ## Upload the application to the Industrial Edge Management
 
