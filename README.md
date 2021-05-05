@@ -68,7 +68,7 @@ Please refer to the [Installation](docs/Installation.md) documentation.
 
 ## Usage
 
-Once the applciation is successfully deployed, it can be tested using the IE Flow Creator.
+Once the application is successfully deployed, it can be tested using the IE Flow Creator.
 
 Please refer to [Testing the application using Simatic Flow Creator](docs/Installation.md#testing-the-application-using-simatic-flow-creator)
 how to use it.
