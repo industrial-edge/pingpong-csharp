@@ -1,0 +1,53 @@
+{
+ "uischema":{
+  "type": "VerticalLayout",
+  "elements": [
+    {
+      "type": "Control",
+	  "label": "Topic 1",
+      "scope": "#/properties/TOPIC_1"
+    },
+	{
+      "type": "Control",
+	  "label": "Topic 2",
+      "scope": "#/properties/TOPIC_2"
+    },
+	{
+      "type": "Control",
+	  "label": "MQTT Broker:",
+      "scope": "#/properties/MQTT_IP"
+    },
+	{
+      "type": "Control",
+	  "label": "User",
+      "scope": "#/properties/MQTT_USER"
+    },
+	{
+      "type": "Control",
+	  "label": "Password",
+      "scope": "#/properties/MQTT_PASSWORD"
+    }
+  ]
+ },
+ "dataschema":{
+  "type": "object",
+  "properties": {
+	"TOPIC_1": {
+      "type": "string"
+    },
+	"TOPIC_2": {
+      "type": "string"
+    },
+	"MQTT_IP": {
+      "type": "string"
+    },
+	"MQTT_USER": {
+      "type": "string"
+    },
+	"MQTT_PASSWORD": {
+      "type": "string"
+    }
+  },
+  "required": ["TOPIC_1", "TOPIC_2", "MQTT_IP", "MQTT_USER", "MQTT_PASSWORD"]
+ }
+}
