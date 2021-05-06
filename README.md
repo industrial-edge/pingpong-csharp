@@ -1,6 +1,6 @@
 # Databus Ping Pong C\#
 
-This repository contains the source files to build the Databus Ping Pong application example implemented in C#.
+This application example contains the source files to build a Databus Ping Pong application implemented in C#.
 
 - [Databus Ping Pong C#](#databus-ping-pong-csharp)
   - [Description](#description)
@@ -19,32 +19,39 @@ This repository contains the source files to build the Databus Ping Pong applica
 
 ### Overview
 
-This application example shows how to connect to the IE Databus and how to send and receive data via the IE Databus using an implementation in C#.
-The IE Flow Creator is used to exchange data with another app using the IE Databus as the MQTT broker.
+This application example shows how to connect to the IE Databus via MQTT and how to publish and subscribe data using an implementation in C#.
+The IE Flow Creator is used to exchange data between different topics within the IE Databus.
 
-The application example uses a multi-stage process for building the docker image to keep the image size as small as possible. The two ``FROM`` Statements in the [Dockerfile](src/Dockerfile) separate the build process into two stages. 
-The fist one is compiling the source code to a executable which then gets copied to the second stage which will be the final image for the application. Please refer to the the [docker documentation](https://docs.docker.com/develop/develop-images/multistage-build/) for more information regarding multi-stage builds.
+Here a multi-stage process for building the docker image is used to keep the image size as small as possible. The two ``FROM`` Statements in the [Dockerfile](src/Dockerfile) separate the build process into two stages.
+
+The fist one is compiling the source code to an executable which then gets copied to the second stage. This stage finally creates the application container, where the executable runs. Please refer to the the [docker documentation](https://docs.docker.com/develop/develop-images/multistage-build/) for more information regarding multi-stage builds.
+
+This example also shows two ways of configuring the application:
+
+- configuration via file upload (fix configuration file)
+- configuration via system app Configuration Service (custom configuration UI with JSON Forms)
 
 ![Use Case](docs/graphics/DataFlow.png)
 
 ### General task
 
-The application subscribes to one topic of the IE Databus and waits to receive data. When data arrives, it publishes a corresponding answer to a second topic of the IE Databus. If it receives the string "Ping", it will answer with "Pong" and the other way around.
+The application includes a MQTT client to subscribe to one topic of the IE Databus and waits to receive data. When data arrives, it publishes a corresponding answer to a second topic of the IE Databus. If it receives the string "Ping", it will answer with "Pong" and the other way around.
 
 ![Use Case](docs/graphics/Usecase.png)
 
-The two topics and the databus user have to be created in the IE Databus in advance. The name of the two topics as well as the databus credentials used by the application can be configured via environmental variables or via an external configuration file created in the Industrial Edge Management.
+The names of the IE Databus topics as well as the credentials used by the application can be configured via different options, otherwise environmental variables included in the docker-compose file are used.
 
 ## Requirements
 
 ### Used components
 
-- Industrial Edge Management V 1.1.16
-  - IE Databus V1.1.23
-  - IE Databus Configurator V1.1.24
-  - IE Flow Creator V 1.0.5
-- Industrial Edge Device V 1.1.0-59
-- Industrial Edge App Publisher V1.1.4
+- Industrial Edge Management V1.2.0-36 / V1.2.14
+  - IE Databus V1.2.16
+  - IE Databus Configurator V1.2.23
+  - IE Flow Creator V1.1.2
+  - IE App Configuration Service V1.0.5
+- Industrial Edge Device V1.2.0-56
+- Industrial Edge App Publisher V1.2.7
 - Docker Engine V20.10.3
 - Docker Compose V1.28.5
 
@@ -61,7 +68,7 @@ Please refer to the [Installation](docs/Installation.md) documentation.
 
 ## Usage
 
-Once the applciation is successfully deployed, it can be tested using the IE Flow Creator.
+Once the application is successfully deployed, it can be tested using the IE Flow Creator.
 
 Please refer to [Testing the application using Simatic Flow Creator](docs/Installation.md#testing-the-application-using-simatic-flow-creator)
 how to use it.
