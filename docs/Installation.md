@@ -137,11 +137,15 @@ If no configuration is used (e.g. if the application is deployed as a standalone
 - Open the PingPong application
 - Click on the install button on the right of the version you want to deploy
 - Under "Schema Configurations" select the above created UI configuration and fill the parameter
+
 ![Config1](./graphics/Config1.png)
 
 OR
+
 - Under "Other Configurations" select the above created file configuration
+
 ![Config2](./graphics/Config2.png)
+
 - Select the corresponing Industrial Edge Device
 - Click "Install Now" and wait for the job to be finished successfully
 
