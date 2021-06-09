@@ -91,7 +91,7 @@ Then a JSON Forms file must be created, consisting of an UI schema and a data sc
 
 ![JsonSchema](./graphics/JsonSchema.png)
 
-This repository already provides that JSON Forms configuration file [here](./../cfg-data/mqtt-config_schema.json). Please rename this file into `mqtt-config.json` on your host to use it properly.
+This repository already provides that JSON Forms configuration file [here](./../cfg-data/json_schema/mqtt-config.json).
 
 ## Upload the application to the Industrial Edge Management
 
