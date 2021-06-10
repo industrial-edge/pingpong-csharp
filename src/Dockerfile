@@ -12,12 +12,20 @@ WORKDIR /build
 RUN apt update && apt install -y git nuget
 
 # Create DLL M2Mqtt.Net.dll via GitHub Repo (all in one container):
+# (*** ONLY works with the mono:6.8.0 image - not with mono:6.8.0-slim ***)
 # - download MQTT client library
 # - change directory
 # - build M2Mqtt.Net.dll and save output files in dir "build" of container
 RUN git clone https://github.com/eclipse/paho.mqtt.m2mqtt \
 && cd paho.mqtt.m2mqtt/M2Mqtt \
 && msbuild M2Mqtt.Net.csproj /p:Configuration=Release /p:OutputPath=/build
+
+# *** second possibility to get M2Mqtt.Net.dll ***
+# Create DLL M2Mqtt.Net.dll via NuGet package:
+# - install nuget package in directory "build"
+# - copy M2Mqtt.Net.dll into directory "build"
+#RUN nuget install M2Mqtt -Version 4.3.0 -OutputDirectory /build
+#RUN cd M2Mqtt.4.3.0.0/lib/net45 && cp M2Mqtt.Net.dll /build
 
 # Create DLL Newtonsoft.Json.dll via NuGet package:
 # - install nuget package in directory "build"
@@ -33,7 +41,7 @@ RUN mcs /reference:M2Mqtt.Net.dll /reference:Newtonsoft.Json.dll PingPong.cs
 
 # ------ STAGE 2 (application container) -----------------
 
-FROM mono:6.8.0
+FROM mono:6.8.0-slim
 
 # create working directory
 ADD . /pingpong
