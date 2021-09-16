@@ -88,7 +88,7 @@ Deploy the flow and test by injecting a string payload into the mqtt in node. If
 
 The finished flow is available [here](src/Flow_Pingpong_Test.json) and can be imported into the IE Flow Creator.
 
-![Flow Creator](graphics/FlowCreator.png)
+![Flow Creator](docs/graphics/FlowCreator.png)
 
 ## Documentation
   
