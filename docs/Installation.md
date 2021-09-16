@@ -88,7 +88,7 @@ First the system app IE Configuration Service must be installed on the IEM.
 
 Then a JSON Forms file must be created, consisting of an UI schema and a data schema. Please see this [getting started](https://jsonforms.io/docs/getting-started) to learn more about JSON Forms. The file should look like this:
 
-![JsonSchema](/docs/graphics/JsonSchema.png)
+<img src="/docs/graphics/JsonSchema.png" width="200" height="400" />
 
 This repository already provides that JSON Forms configuration file [here](/cfg-data/json_schema/mqtt-config.json).
 
