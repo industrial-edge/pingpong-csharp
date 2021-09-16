@@ -22,16 +22,16 @@ This application example contains the source files to build a Databus Ping Pong 
 This application example shows how to connect to the IE Databus via MQTT and how to publish and subscribe data using an implementation in C#.
 The IE Flow Creator is used to exchange data between different topics within the IE Databus.
 
-Here a multi-stage process for building the docker image is used to keep the image size as small as possible. The two ``FROM`` Statements in the [Dockerfile](src/Dockerfile) separate the build process into two stages.
+![Use Case](docs/graphics/DataFlow.png)
 
+This implementation example uses the ``mono:6.8.0`` image, that is an implementation of Microsoft's .NET Framework. Thereby the C# source code can be build an executed.
+Here a multi-stage process for building the docker image is used to keep the image size as small as possible. The two ``FROM`` Statements in the [Dockerfile](src/Dockerfile) separate the build process into two stages.
 The fist one is compiling the source code to an executable which then gets copied to the second stage. This stage finally creates the application container, where the executable runs. Please refer to the the [docker documentation](https://docs.docker.com/develop/develop-images/multistage-build/) for more information regarding multi-stage builds.
 
 This example also shows two ways of configuring the application:
 
 - configuration via file upload (fix configuration file)
 - configuration via system app Configuration Service (custom configuration UI with JSON Forms)
-
-![Use Case](docs/graphics/DataFlow.png)
 
 ### General task
 
@@ -45,37 +45,54 @@ The names of the IE Databus topics as well as the credentials used by the applic
 
 ### Used components
 
-- Industrial Edge Management V1.2.0-36 / V1.2.14
-  - IE Databus V1.2.16
-  - IE Databus Configurator V1.2.23
+- Industrial Edge Management V1.3.0-58 / V1.3.10
+  - IE Databus Configurator V1.3.5
+  - IE Databus V1.3.5
   - IE Flow Creator V1.1.2
-  - IE App Configuration Service V1.0.5
-- Industrial Edge Device V1.2.0-56
-- Industrial Edge App Publisher V1.2.7
-- Docker Engine V20.10.3
+  - IE App Configuration Service V1.0.7
+- Industrial Edge Device (IED) V1.2.0-56
+- Industrial Edge App Publisher V1.3.7
+- Docker Engine V20.10.8
 - Docker Compose V1.28.5
 
 ### Further requirements
 
-- IE Device is onboarded to a IE Management
-- IE Databus Configurator is deployed to the IE Management
-- IE Databus is deployed to the IE Device
-- IE Flow Creator is deployed to the IE Device
+- IED is onboarded to a IEM
+- IE Databus Configurator is deployed to the IEM
+- IE Configuration Service is deployed to the IEM
+- IE Databus is deployed to the IED
+- IE Flow Creator is deployed to the IED
 
 ## Installation
 
-Please refer to the [Installation](docs/Installation.md) documentation.
+Please refer to the [Installation](docs/Installation.md) section on how to build and deploy the application to an IED.
+
+- [Build application](docs/Installation.md#build-application)
+- [Configuring the Industrial Edge Databus](docs/Installation.md#configuring-the-industrial-edge-databus)
+- [Create configuration for the application](docs/Installation.md#create-configuration-for-the-application)
+- [Upload the application to the Industrial Edge Management](docs/Installation.md#upload-the-application-to-the-industrial-edge-management)
+- [Configuring and deploying the application to a Industrial Edge Device](docs/Installation.md#configuring-and-deploying-the-application-to-a-industrial-edge-device)
 
 ## Usage
 
-Once the application is successfully deployed, it can be tested using the IE Flow Creator.
+Once the application is successfully deployed to the IED, it can be tested using the IE Flow Creator.
 
-Please refer to [Testing the application using Simatic Flow Creator](docs/Installation.md#testing-the-application-using-simatic-flow-creator)
-how to use it.
+On the IED restart the PingPong application, to ensure the right configuration is used. Then open the app IE Flow Creator and set it up as following:
+
+- Connect an "inject" node with a "mqtt out" node
+- Connect a "mqtt in" node with a "debug" node
+- Configure the mqtt-nodes to connect to the databus (mqtt broker, username, password)
+- Set the topics of the mqtt-nodes according to the configuration of the application (here: "topic1" to publish to, "topic2" to subscribe to)
+
+Deploy the flow and test by injecting a string payload into the mqtt in node. If the string is "Ping", the application will answer with "Pong". If the string is "Pong" the application will answer with "Ping".
+
+The finished flow is available [here](src/Flow_Pingpong_Test.json) and can be imported into the IE Flow Creator.
+
+![Flow Creator](graphics/FlowCreator.png)
 
 ## Documentation
   
-You can find further documentation and help in the following links
+You can find further documentation and help in the following links:
 
 - [Industrial Edge Hub](https://iehub.eu1.edge.siemens.cloud/#/documentation)
 - [Industrial Edge Forum](https://www.siemens.com/industrial-edge-forum)
