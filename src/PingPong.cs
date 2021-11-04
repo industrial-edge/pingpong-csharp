@@ -161,24 +161,24 @@ namespace PingPong
 
         static void Connect()
         {
-		Console.WriteLine("Create client instance...");
+			Console.WriteLine("Create client instance");
 
             // create mqtt client instance (host name OR IP address work)
             client = new MqttClient(mqtt_broker);
-            
-			Console.WriteLine("Creating client instance...done");
 			
             // register to message received
             client.MqttMsgPublishReceived += client_MqttMsgPublishReceived;
 
+			Console.WriteLine("Connect to broker");
+			
             // use a unique client id each time we start the application
             clientId = Guid.NewGuid().ToString();
-
+		
             // connect to the broker
             client.Connect(clientId);
 
             // connect with authentication
-            client.Connect(Guid.NewGuid().ToString(), mqtt_user, mqtt_pw);
+            //client.Connect(clientId, mqtt_user, mqtt_pw);
 
             if (client.IsConnected == true)
                 System.Console.WriteLine("Client successfully connected to broker!");

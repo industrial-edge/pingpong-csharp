@@ -13,7 +13,6 @@
     - [Create a fixed configuration via file upload (UseCase 1)](#create-a-fixed-configuration-via-file-upload-usecase-1)
     - [Create a custom UI configuration (UseCase 2)](#create-a-custom-ui-configuration-usecase-2)
     - [Installing the application to an Industrial Edge Device](#installing-the-application-to-an-industrial-edge-device)
-  - [Testing the application using Simatic Flow Creator](#testing-the-application-using-simatic-flow-creator)
 
 ## Build application
 
@@ -27,13 +26,13 @@
 - Use command `docker-compose build` in the folder where the docker-compose.yml file is located to build the docker image
 - This docker image can now be used to build your application with the Industrial Edge App Publisher
 
-![Build docker image](./graphics/docker-compose-build.png)
+![Build docker image](/docs/graphics/docker-compose-build.png)
 
 - After building, use `docker images | grep pingpong_csharp` to check if the image was build correctly.
 
 You should see a similar result to this:
 
-![Check for docker image](./graphics/docker-images-grep.png)
+![Check for docker image](/docs/graphics/docker-images-grep.png)
 
 ## Configuring the Industrial Edge Databus
 
@@ -46,7 +45,7 @@ For the PingPong application the databus must provide two topics to publish and 
 - Create two topics for the PingPong application
 - Deploy the databus configuration and wait for the job to be finished successfully
 
-![Databus](./graphics/Databus.png)
+![Databus](/docs/graphics/Databus.png)
 
 ## Create configuration for the application
 
@@ -76,7 +75,7 @@ Here a fixed configuration file is created, that can not be modified during the 
 }
 ```
 
-This repository already provides that configuration file [here](./../cfg-data/mqtt-config.json).
+This repository already provides that configuration file [here](/cfg-data/mqtt-config.json).
 In this example, the application will authenticate to the IE databus with the username `edge` and password `edge`. It will subscribe to `topic1` and will publish to `topic2`.
 
 ### Configuration via app Configuration Service (UseCase 2)
@@ -85,13 +84,13 @@ Here the system app IE Configuration Service is used to create an UI for the con
 
 First the system app IE Configuration Service must be installed on the IEM.
 
-![ConfigurationService](./graphics/ConfigurationService.png)
+![ConfigurationService](/docs/graphics/ConfigurationService.png)
 
 Then a JSON Forms file must be created, consisting of an UI schema and a data schema. Please see this [getting started](https://jsonforms.io/docs/getting-started) to learn more about JSON Forms. The file should look like this:
 
-![JsonSchema](./graphics/JsonSchema.png)
+<img src="/docs/graphics/JsonSchema.png" width="200" height="400" />
 
-This repository already provides that JSON Forms configuration file [here](./../cfg-data/json_schema/mqtt-config.json).
+This repository already provides that JSON Forms configuration file [here](/cfg-data/json_schema/mqtt-config.json).
 
 ## Upload the application to the Industrial Edge Management
 
@@ -114,7 +113,7 @@ If no configuration is used (e.g. if the application is deployed as a standalone
 - Browse for the `mqtt-config.json` file created [here](#configuration-via-fixed-config-file-usecase-1)
 - Click "Add"
 
-![ConfigViaFile](./graphics/ConfigViaFile.png)
+![ConfigViaFile](/docs/graphics/ConfigViaFile.png)
 
 ### Create a custom UI configuration (UseCase 2)
 
@@ -128,7 +127,7 @@ If no configuration is used (e.g. if the application is deployed as a standalone
 - Activate "Json Schema"
 - Click "Add"
 
-![ConfigViaUi](./graphics/ConfigViaUi.png)
+![ConfigViaUi](/docs/graphics/ConfigViaUi.png)
 
 ### Installing the application to an Industrial Edge Device
 
@@ -138,30 +137,15 @@ If no configuration is used (e.g. if the application is deployed as a standalone
 - Click on the install button on the right of the version you want to deploy
 - Under "Schema Configurations" select the above created UI configuration and fill the parameter
 
-![Config1](./graphics/Config1.png)
+![Config1](/docs/graphics/Config1.png)
 
 OR
 
 - Under "Other Configurations" select the above created file configuration
 
-![Config2](./graphics/Config2.png)
+![Config2](/docs/graphics/Config2.png)
 
 - Select the corresponing Industrial Edge Device
 - Click "Install Now" and wait for the job to be finished successfully
 
 When the PingPong application is deployed and running on the Industrial Edge Device, it can be tested using the Simatic Flow Creator.
-
-## Testing the application using Simatic Flow Creator
-
-- Open the Industrial Edge Device web interface
-- Restart the PingPong application (to ensure the right configuration is used)
-- Open the Simatic Flow Creator
-- Connect a "inject" node with a "mqtt out" node
-- Connect a "mqtt in" node with a "debug" node
-- Configure the mqtt-nodes to connect to the databus. Enter the hostname, username and password.
-- Set the topics of the mqtt-nodes according to the configuration of the application. For example `topic1` as the topic to publish to and `topic2` as the topic to subscribe to.
-- Deploy the flow and test by injecting a string payload into the mqtt in node. If the string is "Ping", the application will answer with "Pong". If the string is "Pong" the application will answer with "Ping".
-
-The finished flow is available [here](./../src/Flow_Pingpong_Test.json) and can be imported into the simatic flow creator.
-
-![PingPong test in Simatic Flow Creator](./graphics/pingpong-flowcreator.gif)
