@@ -175,10 +175,10 @@ namespace PingPong
             clientId = Guid.NewGuid().ToString();
 		
             // connect to the broker
-            client.Connect(clientId);
+            //client.Connect(clientId);
 
             // connect with authentication
-            //client.Connect(clientId, mqtt_user, mqtt_pw);
+            client.Connect(clientId, mqtt_user, mqtt_pw);
 
             if (client.IsConnected == true)
                 System.Console.WriteLine("Client successfully connected to broker!");
