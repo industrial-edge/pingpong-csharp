@@ -7,8 +7,8 @@ This application example contains the source files to build a Databus Ping Pong 
     - [Overview](#overview)
     - [General task](#general-task)
   - [Requirements](#requirements)
+    - [Prerequisites](#prerequisites)
     - [Used components](#used-components)
-    - [Further requirements](#further-requirements)
   - [Installation](#installation)
   - [Usage](#usage)
   - [Documentation](#documentation)
@@ -43,25 +43,24 @@ The names of the IE Databus topics as well as the credentials used by the applic
 
 ## Requirements
 
+###  Prerequisites
+
+- Access to an Industrial Edge Management (IEM) with onboarded Industrial Edge Device (IED)
+- IEM: Installed apps: Databus Configurator, IE App Configuration Service
+- IED: Installed apps: Databus, IE Flow Creator
+
 ### Used components
 
-- Industrial Edge Management V1.3.0-58 / V1.4.3
-  - IE Databus Configurator V1.4.22
-  - IE Databus V1.4.16
-  - IE Flow Creator V1.2.2
-  - IE App Configuration Service V1.0.7
-- Industrial Edge Device (IED) V1.3.0-57
-- Industrial Edge App Publisher V1.4.3
+- Industrial Edge Management (IEM) V1.5.2-4 / V1.11.8
+  - IE App Configuration Service V1.2.2
+  - IE Databus Configurator V2.0.0-5
+- Industrial Edge Device (IED) V1.9.0-27
+  - IE Databus V2.0.0-4
+  - IE Flow Creator V 1.12.0-1
+- Industrial Edge App Publisher V1.5.6
 - Docker Engine V20.10.10
-- Docker Compose V1.28.5
-
-### Further requirements
-
-- IED is onboarded to a IEM
-- IE Databus Configurator is deployed to the IEM
-- IE Configuration Service is deployed to the IEM
-- IE Databus is deployed to the IED
-- IE Flow Creator is deployed to the IED
+- Docker Compose V1.29.2
+- Web browser (Chrome)
 
 ## Installation
 
