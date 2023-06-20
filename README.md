@@ -55,12 +55,12 @@ The names of the Databus topics as well as the credentials used by the applicati
 - Industrial Edge Management (IEM) V1.5.2-4 / V1.11.8
   - IE App Configuration Service V1.2.2
   - Databus Configurator V2.0.0-5
-- Industrial Edge Device (IED) V1.9.0-27
+- Industrial Edge Device (IED) V1.10.0-9
   - Databus V2.0.0-4
   - Flow Creator V 1.12.0-1
-- Industrial Edge App Publisher V1.5.6
+- Industrial Edge App Publisher V1.10.5
 - Docker Engine V20.10.10
-- Docker Compose V1.29.2
+- Docker Compose V2.4
 - Web browser (Chrome)
 
 ## Installation
