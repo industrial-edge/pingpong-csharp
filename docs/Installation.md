@@ -24,7 +24,7 @@ Download or clone the repository source code to your workstation.
 
 * Trough terminal:
 ```bash
-git clone https://github.com/industrial-edge/hello-world.git
+git clone https://github.com/industrial-edge/pingpong-csharp.git
 ```
 
 * Trough VSCode:  
