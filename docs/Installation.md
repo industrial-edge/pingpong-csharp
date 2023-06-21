@@ -2,9 +2,9 @@
 
 - [Installation](#installation)
   - [Build application](#build-application)
-    - [Cloning the repository](#cloning-the-repository)
+    - [Download Repository](#download-repository)
     - [Build docker image](#build-docker-image)
-  - [Configuring the Industrial Edge Databus](#configuring-the-industrial-edge-databus)
+  - [Configuring Databus](#configuring-databus)
   - [Create configuration for the application](#create-configuration-for-the-application)
     - [Configuration via fixed config file (UseCase 1)](#configuration-via-fixed-config-file-usecase-1)
     - [Configuration via app Configuration Service (UseCase 2)](#configuration-via-app-configuration-service-usecase-2)
@@ -16,30 +16,36 @@
 
 ## Build application
 
-### Cloning the repository
+### Download Repository
 
-- Clone or Download the source code to your engineering VM
+Download or clone the repository source code to your workstation.  
+![Github Clone Section](graphics/clonerepo.png)
+
+
+* Trough terminal:
+```bash
+git clone https://github.com/industrial-edge/pingpong-csharp.git
+```
+
+* Trough VSCode:  
+<kbd>CTRL</kbd>+<kbd>&uarr; SHIFT</kbd>+<kbd>P</kbd> or <kbd>F1</kbd> to open VSCode's command pallette and type `git clone`:
+
+![VS Code Git Clone command](graphics/git.png)
 
 ### Build docker image
 
-- Open a console in the source code folder
-- Use command `docker-compose build` in the folder where the docker-compose.yml file is located to build the docker image
-- This docker image can now be used to build your application with the Industrial Edge App Publisher
+- Navigate into `src` and find the file named `Dockerfile.example`. The `Dockerfile.example` is an example Dockerfile that can be used to build the docker image(s) of the service(s) that runs in this application example. If you choose to use these, rename them to `Dockerfile` before proceeding
+- Open a console in the root folder (where the `docker-compose` file is)
+- Use the `docker compose build` (replaces the older `docker-compose build`) command to build the docker image of the service which is specified in the docker-compose.yml file.
+- These Docker images can now be used to build your app with the Industrial Edge App Publisher
+- `docker images` can be used to check for the images
 
-![Build docker image](/docs/graphics/docker-compose-build.png)
-
-- After building, use `docker images | grep pingpong_csharp` to check if the image was build correctly.
-
-You should see a similar result to this:
-
-![Check for docker image](/docs/graphics/docker-images-grep.png)
-
-## Configuring the Industrial Edge Databus
+## Configuring Databus
 
 For the PingPong application the databus must provide two topics to publish and subscribe to.
 
 - Open the Industrial Edge Management web interface
-- Go to "Data Connections" > IE Databus
+- Go to "Data Connections" > Databus
 - Select the corresponding Industrial Edge Device
 - Create a new user with username and password and give the user publish and subscribe permission
 - Create two topics for the PingPong application
@@ -76,7 +82,7 @@ Here a fixed configuration file is created, that can not be modified during the 
 ```
 
 This repository already provides that configuration file [here](/cfg-data/mqtt-config.json).
-In this example, the application will authenticate to the IE databus with the username `edge` and password `edge`. It will subscribe to `topic1` and will publish to `topic2`.
+In this example, the application will authenticate to the databus with the username `edge` and password `edge`. It will subscribe to `topic1` and will publish to `topic2`.
 
 ### Configuration via app Configuration Service (UseCase 2)
 
