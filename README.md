@@ -48,7 +48,7 @@ The names of the Databus topics as well as the credentials used by the applicati
 
 - Access to an Industrial Edge Management (IEM) with onboarded Industrial Edge Device (IED)
 - IEM: Installed apps: Databus Configurator, IE App Configuration Service
-- IED: Installed apps: Databus, IE Flow Creator
+- IED: Installed apps: Databus, Flow Creator
 
 ### Used components
 
@@ -75,9 +75,9 @@ Please refer to the [Installation](/docs/Installation.md) section on how to buil
 
 ## Usage
 
-Once the application is successfully deployed to the IED, it can be tested using the IE Flow Creator.
+Once the application is successfully deployed to the IED, it can be tested using the Flow Creator.
 
-On the IED restart the PingPong application, to ensure the right configuration is used. Then open the app IE Flow Creator and set it up as following:
+On the IED restart the PingPong application, to ensure the right configuration is used. Then open the app Flow Creator and set it up as following:
 
 - Connect an "inject" node with a "mqtt out" node
 - Connect a "mqtt in" node with a "debug" node
@@ -86,7 +86,7 @@ On the IED restart the PingPong application, to ensure the right configuration i
 
 Deploy the flow and test by injecting a string payload into the mqtt in node. If the string is "Ping", the application will answer with "Pong". If the string is "Pong" the application will answer with "Ping".
 
-The finished flow is available [here](/src/Flow_Pingpong_Test.json) and can be imported into the IE Flow Creator.
+The finished flow is available [here](/src/Flow_Pingpong_Test.json) and can be imported into the Flow Creator.
 
 ![Flow Creator](docs/graphics/FlowCreator.png)
 

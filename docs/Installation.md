@@ -82,7 +82,7 @@ Here a fixed configuration file is created, that can not be modified during the 
 ```
 
 This repository already provides that configuration file [here](/cfg-data/mqtt-config.json).
-In this example, the application will authenticate to the IE databus with the username `edge` and password `edge`. It will subscribe to `topic1` and will publish to `topic2`.
+In this example, the application will authenticate to the databus with the username `edge` and password `edge`. It will subscribe to `topic1` and will publish to `topic2`.
 
 ### Configuration via app Configuration Service (UseCase 2)
 
