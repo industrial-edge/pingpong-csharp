@@ -7,7 +7,7 @@
   - [Configuring Databus](#configuring-databus)
   - [Create configuration for the application](#create-configuration-for-the-application)
     - [Configuration via fixed config file (UseCase 1)](#configuration-via-fixed-config-file-usecase-1)
-    - [Configuration via app Configuration Service (UseCase 2)](#configuration-via-app-configuration-service-usecase-2)
+    - [Configuration via UI (UseCase 2)](#configuration-via-UI-usecase-2)
   - [Upload the application to the Industrial Edge Management](#upload-the-application-to-the-industrial-edge-management)
   - [Configuring and deploying the application to a Industrial Edge Device](#configuring-and-deploying-the-application-to-a-industrial-edge-device)
     - [Create a fixed configuration via file upload (UseCase 1)](#create-a-fixed-configuration-via-file-upload-usecase-1)
@@ -77,22 +77,18 @@ Here a fixed configuration file is created, that can not be modified during the 
     "MQTT_PASSWORD":"edge",
     "MQTT_IP":"ie-databus",
     "TOPIC_1":"topic1",
-    "TOPIC_2":"topic1"
+    "TOPIC_2":"topic2"
 }
 ```
 
 This repository already provides that configuration file [here](/cfg-data/mqtt-config.json).
 In this example, the application will authenticate to the databus with the username `edge` and password `edge`. It will subscribe to `topic1` and will publish to `topic2`.
 
-### Configuration via app Configuration Service (UseCase 2)
+### Configuration via UI (UseCase 2)
 
-Here the system app IE Configuration Service is used to create an UI for the configuration of the application. The UI is based on a JSON Forms file, that is integrated as a configuration template via the Publisher. By using this configuration during the installation, the user can fill out the parameter individual.
+Here JSON Schema is used to create an UI for the configuration of the application. The UI is based on a JSON Forms file, that is integrated as a configuration template via the Publisher. By using this configuration during the installation, the user can fill out the parameter individual.
 
-First the system app IE Configuration Service must be installed on the IEM.
-
-![ConfigurationService](/docs/graphics/ConfigurationService.png)
-
-Then a JSON Forms file must be created, consisting of an UI schema and a data schema. Please see this [getting started](https://jsonforms.io/docs/getting-started) to learn more about JSON Forms. The file should look like this:
+A JSON Forms file must be created, consisting of an UI schema and a data schema. Please see this [getting started](https://jsonforms.io/docs/getting-started) to learn more about JSON Forms. The file should look like this:
 
 <img src="/docs/graphics/JsonSchema.png" width="200" height="400" />
 
